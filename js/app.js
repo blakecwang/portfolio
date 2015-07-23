@@ -5,17 +5,21 @@ var categories =
 [
 	{
 	"name": "Mechanical Engineering",
-	"bold": false
+	"selected": false
 	},
 	{
 	"name": "Web Development",
-	"bold": false
+	"selected": false
 	},
 	{
 	"name": "Graphic Design",
-	"bold": false
+	"selected": false
 	}
 ];
+
+$( "#mech" ).click(function() {
+  console.log( "Handler for .click() called." );
+});
 
 
 //-----VIEWMODEL-----//

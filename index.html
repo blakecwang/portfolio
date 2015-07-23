@@ -19,17 +19,17 @@
     		</div>
             <div class="row header">
                 <div class="col-md-4">
-                    <h2 data-bind="css: { bold: currentCategory() === 0 }">
+                    <h2 data-bind="css: { selected: currentCategory() === 0 }" id="mech">
                         Mechanical Engineering
                     </h2>
                 </div>
                 <div class="col-md-4">
-                    <h2 data-bind="css: { bold: currentCategory() === 1 }">
+                    <h2 data-bind="css: { selected: currentCategory() === 1 }" id="web">
                         Web Development
                     </h2>
                 </div>
                 <div class="col-md-4">
-                    <h2 data-bind="css: { bold: currentCategory() === 2 }">
+                    <h2 data-bind="css: { selected: currentCategory() === 2 }" id="graphic">
                         Graphic Design
                     </h2>
                 </div>
@@ -41,6 +41,7 @@
     </body>
 
     <script src="js/knockout-3.2.0.js"></script>
+    <script src="js/jquery.js"></script>
     <script src="js/app.js"></script>
 
 </html>
