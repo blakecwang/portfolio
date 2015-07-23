@@ -14,9 +14,6 @@ body {
 	height: 100%;
 }
 
-/*.header {
-	text-align: center;
-}*/
 
 .container {
 	height: 100%;
@@ -29,6 +26,11 @@ body {
 h1, h2 {
 	margin-bottom: 20px;
 	text-align: center;
+}
+
+.bold {
+	font-weight: bold;
+	font-size: 32px;
 }
 
 #message {

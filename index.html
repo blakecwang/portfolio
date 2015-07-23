@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
     <head>
     	<title>Blake Wang's Portfolio</title>
 
@@ -10,6 +11,7 @@
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/style.css">
     <head>
+
     <body>
     	<div class="container">
     		<div class="row header">
@@ -17,13 +19,19 @@
     		</div>
             <div class="row header">
                 <div class="col-md-4">
-                        <h2>Mechanical Engineering</h2>
+                    <h2 data-bind="css: { bold: currentCategory() === 0 }">
+                        Mechanical Engineering
+                    </h2>
                 </div>
                 <div class="col-md-4">
-                        <h2>Web Development</h2>
+                    <h2 data-bind="css: { bold: currentCategory() === 1 }">
+                        Web Development
+                    </h2>
                 </div>
                 <div class="col-md-4">
-                        <h2>Graphic Design</h2>
+                    <h2 data-bind="css: { bold: currentCategory() === 2 }">
+                        Graphic Design
+                    </h2>
                 </div>
             </div>
             <div class="row" id="content">
@@ -31,4 +39,8 @@
             </div>
     	</div>
     </body>
+
+    <script src="js/knockout-3.2.0.js"></script>
+    <script src="js/app.js"></script>
+
 </html>
