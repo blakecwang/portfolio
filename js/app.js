@@ -57,6 +57,36 @@ var muProjects = [
 	}
 ];
 
+var init = function() {
+	for (i = 0; i < categories.length; i++) {
+		var name = categories[i].name;
+		var id = categories[i].id;
+		var before = "<div class='col-md-3'><h2 id='"
+		var after = "</h2></div>"
+		var elem = before + id + "'>" + name + after;
+
+		$("#categories").append(elem);
+	}
+};
+init();
+
+                // <div class="col-md-4">
+                //     <h2 data-bind="css: { selected: currentCategory() === 0 }" id="mech">
+                //         Mechanical Engineering
+                //     </h2>
+                // </div>
+                // <div class="col-md-4">
+                //     <h2 data-bind="css: { selected: currentCategory() === 1 }" id="web">
+                //         Web Development
+                //     </h2>
+                // </div>
+                // <div class="col-md-4">
+                //     <h2 data-bind="css: { selected: currentCategory() === 2 }" id="graphic">
+                //         Graphic Design
+                //     </h2>
+                // </div>
+
+
 
 //-----VIEWMODEL-----//
 
