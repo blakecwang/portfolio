@@ -91,13 +91,14 @@ var viewModel = function() {
 		self.categoryList.push(categories[k]);
 	}
 
-	// define change category function
+	// define change current category function
 	this.changeCurrentCategory = function(category) {
 		self.currentCategory(category);
 	};
 
-	this.init = function() {
-		// init category elements
+	this.initCategories = function(data) {
+
+		// add category elements to DOM
 		for (var i = 0; i < self.categoryList().length; i++) {
 
 			var elem = "<div class='col-md-3'><h2>"
@@ -107,24 +108,29 @@ var viewModel = function() {
 		}
 
 
-		// add click listeners to categories
-		// var c = $("#categories").find("h2");
-		// for (var j = 0; j < categories.length; j++) {
+		// add click listeners to category elements
+		var catElems = $("#categories:nth-child(0)").find("h2");
+		// console.log(catElems);
+		var c;
+		// for (var j = 0; j < self.categoryList().length; j++) {
+
+		// 	c = catElems[j];
+
 		// 	(function(_data) {
-	            
-		// 		c[j].click(function() {
+		// 		c.click(function() {
 		// 			// self.changeCurrentCategory(_data);
 		// 			console.log("click");
 		// 		});
-
-	 //        })(categories[j]);
+	 //        })(self.categoryList()[j]);
 		// }
-	};
-	this.init();
 
-	// $( "#mech" ).click(function() {
-	// 	self.currentCategory(0);
-	// });
+		catElems.click(function() {
+			console.log("something");
+		});
+	};
+	this.initCategories(self.categoryList());
+
+
 	// $( "#web" ).click(function() {
 	// 	self.currentCategory(1);
 	// });
