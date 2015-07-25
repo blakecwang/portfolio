@@ -101,51 +101,32 @@ var viewModel = function() {
 		// add category elements to DOM
 		for (var i = 0; i < self.categoryList().length; i++) {
 
-			var elem = "<div class='col-md-3'><h2 id='"
-				+ self.categoryList()[i].id + "'>"
-				+ self.categoryList()[i].name + "</h2></div>";
+				var elem = "<div class='col-md-3'><h2 "
+					+ "data-bind='css: { selected: currentCategory() === " + i + " }' id='"
+					+ self.categoryList()[i].id + "'>"
+					+ self.categoryList()[i].name + "</h2></div>";
 
-			$("#categories").append(elem);
+				$("#categories").append(elem);
+
 		}
-
 
 		// add click listeners to category elements
-		// var catElems = $("#categories").children()[1];
-		// console.log(catElems);
-		// var c;
-		// for (var j = 0; j < self.categoryList().length; j++) {
-
-		// 	c = catElems[j];
-
-		// 	(function(_data) {
-		// 		c.click(function() {
-		// 			// self.changeCurrentCategory(_data);
-		// 			console.log("click");
-		// 		});
-	 //        })(self.categoryList()[j]);
-		// }
-
 		for (var j = 0; j < self.categoryList().length; j++) {
 
-			var jId = "#" + self.categoryList()[j].id;
-
-			(function(_data) {
-				$(jId).click(function() {
-					console.log(_data);
-				});
-			})(jId);
+			var catObj = self.categoryList()[j];
+			var catIndex = j;
 			
+			(function(_data, _index) {
+				var catId = "#" + _data.id;
+				$(catId).click(function() {
+					self.changeCurrentCategory(_index);
+				});
+			})(catObj, catIndex);
 		}
 	};
+
 	this.initCategories(self.categoryList());
 
-
-	// $( "#web" ).click(function() {
-	// 	self.currentCategory(1);
-	// });
-	// $( "#graphic" ).click(function() {
-	// 	self.currentCategory(2);
-	// });
 };
 
 ko.applyBindings(new viewModel());
