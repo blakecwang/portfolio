@@ -1,42 +1,27 @@
-* {
+/** {
 	border: 1px solid red;
-}
+}*/
 
 html {
 	background-image: url('../img/beach_2.jpg');
 	background-repeat: no-repeat;
-	height: 100%;
 	font-family: 'texgyreadventorregular' !important;
 }
 
 body {
 	background-color: transparent;
 	color: white;
-	height: 100%;
-}
-
-
-.container {
-	height: 100%;
-}
-
-#content {
-	height: 100%;
 }
 
 h1 {
 	font-size: 48px;
+	text-align: center;
 }
 
 h1, h2 {
 	margin-bottom: 20px;
-	text-align: center;
+	
 }
-
-/*.col-md-3 {
-	float: none;
-    display: table-cell;
-}*/
 
 .selected {
 	font-weight: bold;

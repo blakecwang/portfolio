@@ -1,3 +1,7 @@
+// TODO
+// change currentCategory to int index instead of object
+
+
 
 //-----MODEL-----//
 
@@ -77,6 +81,8 @@ var viewModel = function() {
 		self.currentCategory(category);
 	};
 
+
+
 	this.initCategories = function(data) {
 
 		// add category elements to DOM
@@ -84,7 +90,7 @@ var viewModel = function() {
 
 				var catId = self.categoryList()[i].id;
 				var catName = self.categoryList()[i].name;
-				var elem = "<div class='col-md-3' "
+				var elem = "<div class='row' "
 					+ "id='" + catId + "'>"
 					+ "<h2 data-bind='css: { selected: currentCategory() === " + i + "}'>"
 					+ catName + "</h2></div>";
@@ -109,6 +115,9 @@ var viewModel = function() {
 	};
 
 	this.initCategories(self.categoryList());
+
+	this.changeCurrentCategory(self.categoryList()[1]);
+
 
 };
 
