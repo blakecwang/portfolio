@@ -6,22 +6,22 @@ var categories =
 	{
 	"name": "Mechanical Engineering",
 	"content": meProjects,
-	// "id": "me"
+	"id": "me"
 	},
 	{
 	"name": "Web Development",
 	"content": weProjects,
-	// "id": "we"
+	"id": "we"
 	},
 	{
 	"name": "Graphic Design",
 	"content": grProjects,
-	// "id": "gr"
+	"id": "gr"
 	},
 	{
 	"name": "Music",
 	"content": muProjects,
-	// "id": "mu"
+	"id": "mu"
 	}
 ];
 
@@ -101,7 +101,8 @@ var viewModel = function() {
 		// add category elements to DOM
 		for (var i = 0; i < self.categoryList().length; i++) {
 
-			var elem = "<div class='col-md-3'><h2>"
+			var elem = "<div class='col-md-3'><h2 id='"
+				+ self.categoryList()[i].id + "'>"
 				+ self.categoryList()[i].name + "</h2></div>";
 
 			$("#categories").append(elem);
@@ -109,9 +110,9 @@ var viewModel = function() {
 
 
 		// add click listeners to category elements
-		var catElems = $("#categories:nth-child(0)").find("h2");
+		// var catElems = $("#categories").children()[1];
 		// console.log(catElems);
-		var c;
+		// var c;
 		// for (var j = 0; j < self.categoryList().length; j++) {
 
 		// 	c = catElems[j];
@@ -124,9 +125,17 @@ var viewModel = function() {
 	 //        })(self.categoryList()[j]);
 		// }
 
-		catElems.click(function() {
-			console.log("something");
-		});
+		for (var j = 0; j < self.categoryList().length; j++) {
+
+			var jId = "#" + self.categoryList()[j].id;
+
+			(function(_data) {
+				$(jId).click(function() {
+					console.log(_data);
+				});
+			})(jId);
+			
+		}
 	};
 	this.initCategories(self.categoryList());
 
