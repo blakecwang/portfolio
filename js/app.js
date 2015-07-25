@@ -8,7 +8,8 @@
 var bio = [
 	{
 	"name": "Welcome to my Portfolio!",
-	"imgSrc": "some path",
+	"imgSrc": "img/penguin.jpeg",
+	"altText": "adorable penguin with giant glasses",
 	"description": "Welcome to my portfolio!"
 	}
 ];
@@ -17,11 +18,13 @@ var meProjects = [
 	{
 	"name": "ROVA Pedestrian Assistive Technology",
 	"imgSrc": "some path",
+	"altText": "adorable penguin with giant glasses",
 	"description": "bad-ass walker"
 	},
 	{
 	"name": "Accuvax",
 	"imgSrc": "some path",
+	"altText": "adorable penguin with giant glasses",
 	"description": "bad-ass vaccine refrigerator"
 	}
 ];
@@ -30,6 +33,7 @@ var weProjects = [
 	{
 	"name": "Frogger game",
 	"imgSrc": "some path",
+	"altText": "adorable penguin with giant glasses",
 	"description": "bad-ass game"
 	}
 ];
@@ -38,6 +42,7 @@ var grProjects = [
 	{
 	"name": "String cheese people",
 	"imgSrc": "some path",
+	"altText": "adorable penguin with giant glasses",
 	"description": "bad-ass drawing"
 	}
 ];
@@ -46,6 +51,7 @@ var muProjects = [
 	{
 	"name": "Got to Give",
 	"imgSrc": "some path",
+	"altText": "adorable penguin with giant glasses",
 	"description": "bad-ass song"
 	}
 ];
@@ -92,10 +98,37 @@ var viewModel = function() {
 		self.catList.push(categories[k]);
 	}
 	this.currentCat = ko.observable(0);
-	this.projName = ko.computed(function() {
-		var index = self.currentCat();
-		var name = self.catList()[index].projects[0].name;
-        return name;
+	this.projects = ko.computed(function() {
+
+		var catIndex = self.currentCat();
+		var projArray = self.catList()[catIndex].projects;
+		var projElem = "";
+
+		for (var m = 0; m < projArray.length; m++) {
+
+			var projImgSrc = projArray[m].imgSrc;
+			var projAltText = projArray[m].altText;
+			var projName = projArray[m].name;
+			var projDescription = projArray[m].description;
+
+			projElem +=
+			"<div class='row'>" +
+				"<div class='col-md-4'>" +
+					"<img src='" + projImgSrc + "' alt='" + projAltText + "'>" +
+				"</div>" +
+				"<div class='col-md-8'>" +
+					"<div class='row'>" +
+						"<h2>" + projName + "</h2>" +
+					"</div>" +
+					"<div class='row'>" +
+						"<p>" + projDescription + "</p>" +
+					"</div>" +
+				"</div>" +
+			"</div>";
+		}
+
+
+        return projElem;
     }, this);
 
 
