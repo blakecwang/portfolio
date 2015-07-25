@@ -58,25 +58,6 @@ var muProjects = [
 ];
 
 
-
-                // <div class="col-md-4">
-                //     <h2 data-bind="css: { selected: currentCategory() === 0 }" id="mech">
-                //         Mechanical Engineering
-                //     </h2>
-                // </div>
-                // <div class="col-md-4">
-                //     <h2 data-bind="css: { selected: currentCategory() === 1 }" id="web">
-                //         Web Development
-                //     </h2>
-                // </div>
-                // <div class="col-md-4">
-                //     <h2 data-bind="css: { selected: currentCategory() === 2 }" id="graphic">
-                //         Graphic Design
-                //     </h2>
-                // </div>
-
-
-
 //-----VIEWMODEL-----//
 
 var viewModel = function() {
@@ -101,10 +82,12 @@ var viewModel = function() {
 		// add category elements to DOM
 		for (var i = 0; i < self.categoryList().length; i++) {
 
-				var elem = "<div class='col-md-3'><h2 "
-					+ "data-bind='css: { selected: currentCategory() === " + i + " }' id='"
-					+ self.categoryList()[i].id + "'>"
-					+ self.categoryList()[i].name + "</h2></div>";
+				var catId = self.categoryList()[i].id;
+				var catName = self.categoryList()[i].name;
+				var elem = "<div class='col-md-3' "
+					+ "id='" + catId + "'>"
+					+ "<h2 data-bind='css: { selected: currentCategory() === " + i + "}'>"
+					+ catName + "</h2></div>";
 
 				$("#categories").append(elem);
 
@@ -117,8 +100,8 @@ var viewModel = function() {
 			var catIndex = j;
 			
 			(function(_data, _index) {
-				var catId = "#" + _data.id;
-				$(catId).click(function() {
+				var catElem = "#" + _data.id;
+				$(catElem).click(function() {
 					self.changeCurrentCategory(_index);
 				});
 			})(catObj, catIndex);
