@@ -5,27 +5,11 @@
 
 //-----MODEL-----//
 
-var categories =
-[
+var bio = [
 	{
-	"name": "Mechanical Engineering",
-	"content": meProjects,
-	"id": "me"
-	},
-	{
-	"name": "Web Development",
-	"content": weProjects,
-	"id": "we"
-	},
-	{
-	"name": "Graphic Design",
-	"content": grProjects,
-	"id": "gr"
-	},
-	{
-	"name": "Music",
-	"content": muProjects,
-	"id": "mu"
+	"name": "Welcome to my Portfolio!",
+	"imgSrc": "some path",
+	"description": "Welcome to my portfolio!"
 	}
 ];
 
@@ -34,6 +18,11 @@ var meProjects = [
 	"name": "ROVA Pedestrian Assistive Technology",
 	"imgSrc": "some path",
 	"description": "bad-ass walker"
+	},
+	{
+	"name": "Accuvax",
+	"imgSrc": "some path",
+	"description": "bad-ass vaccine refrigerator"
 	}
 ];
 
@@ -62,6 +51,36 @@ var muProjects = [
 ];
 
 
+var categories =
+[
+	{
+	"title": "About Me",
+	"projects": bio,
+	"id": "bi"
+	},
+	{
+	"title": "Mechanical Engineering",
+	"projects": meProjects,
+	"id": "me"
+	},
+	{
+	"title": "Web Development",
+	"projects": weProjects,
+	"id": "we"
+	},
+	{
+	"title": "Graphic Design",
+	"projects": grProjects,
+	"id": "gr"
+	},
+	{
+	"title": "Music",
+	"projects": muProjects,
+	"id": "mu"
+	}
+];
+
+
 //-----VIEWMODEL-----//
 
 var viewModel = function() {
@@ -69,12 +88,16 @@ var viewModel = function() {
 
 	// initialize some observables
 	this.catList = ko.observableArray();
-	this.currentCat = ko.observable();
-
-	//populate catList
 	for (var k = 0; k < categories.length; k++) {
 		self.catList.push(categories[k]);
 	}
+	this.currentCat = ko.observable(0);
+	this.projName = ko.computed(function() {
+		var index = self.currentCat();
+		var name = self.catList()[index].projects[0].name;
+        return name;
+    }, this);
+
 
 	// define change current category function
 	this.changeCurrentCat = function(catIndex) {
@@ -89,7 +112,7 @@ var viewModel = function() {
 		for (var i = 0; i < self.catList().length; i++) {
 
 				var catId = self.catList()[i].id;
-				var catName = self.catList()[i].name;
+				var catName = self.catList()[i].title;
 				var catElem = "<div class='row' "
 					+ "id='" + catId + "'>"
 					+ "<h2 data-bind='css: { selected: currentCat() === " + i + "}'>"
@@ -115,8 +138,6 @@ var viewModel = function() {
 	};
 
 	this.initCats(self.catList());
-
-
 
 };
 
