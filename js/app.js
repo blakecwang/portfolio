@@ -83,16 +83,16 @@ var categories =
 ];
 
 
-//-----VIEWMODEL-----//
+// set  background size
+var imgX = 1920;
+var imgY = 1080;
+var winX, winY, newX, newY, newXY;
 
-var viewModel = function() {
-	var self = this;
+var setBackgroundSize = function() {
 
-	var imgX = 1920;
-	var imgY = 1080;
-	var winX = $(window).width();
-	var winY = $(window).height();
-	var newX, newY;
+	winX = $(window).width();
+	winY = $(window).height();
+
 	if (winX / winY < imgX / imgY) {
 		newY = winY;
 		newX = imgX * (winY / imgY);
@@ -100,18 +100,20 @@ var viewModel = function() {
 		newX = winX;
 		newY = imgY * (winX / imgX);
 	}
-	var newXY = newX + "px " + newY + "px";
-	console.log(newXY);
+	newXY = newX + "px " + newY + "px";
 
-	$("html").css("background-image", "url('img/beach_2.jpg')");
-	$("html").css("background-color", "black");
-	$("html").css("background-repeat", "no-repeat");
-	$("html").css("background-position", "center");
 	$("html").css("background-size", newXY);
+};
+setBackgroundSize();
+
+$(window).resize(setBackgroundSize);
 
 
-	
 
+//-----VIEWMODEL-----//
+
+var viewModel = function() {
+	var self = this;
 
 	// initialize some observables
 	this.catList = ko.observableArray();

@@ -3,9 +3,10 @@
 }*/
 
 html {
-/*	background-image: url('../img/beach_2.jpg');
+	background-image: url('../img/beach_2.jpg');
 	background-color: black;
-	background-repeat: no-repeat;*/
+	background-repeat: no-repeat;
+	background-position: center;
 	font-family: 'texgyreadventorregular' !important;
 	height: 100%;
 }
