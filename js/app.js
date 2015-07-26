@@ -1,7 +1,3 @@
-// TODO
-// change currentCat to int index instead of object
-
-
 
 //-----MODEL-----//
 
@@ -91,6 +87,31 @@ var categories =
 
 var viewModel = function() {
 	var self = this;
+
+	var imgX = 1920;
+	var imgY = 1080;
+	var winX = $(window).width();
+	var winY = $(window).height();
+	var newX, newY;
+	if (winX / winY < imgX / imgY) {
+		newY = winY;
+		newX = imgX * (winY / imgY);
+	} else {
+		newX = winX;
+		newY = imgY * (winX / imgX);
+	}
+	var newXY = newX + "px " + newY + "px";
+	console.log(newXY);
+
+	$("html").css("background-image", "url('img/beach_2.jpg')");
+	$("html").css("background-color", "black");
+	$("html").css("background-repeat", "no-repeat");
+	$("html").css("background-position", "center");
+	$("html").css("background-size", newXY);
+
+
+	
+
 
 	// initialize some observables
 	this.catList = ko.observableArray();

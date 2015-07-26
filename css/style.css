@@ -3,9 +3,11 @@
 }*/
 
 html {
-	background-image: url('../img/beach_2.jpg');
-	background-repeat: no-repeat;
+/*	background-image: url('../img/beach_2.jpg');
+	background-color: black;
+	background-repeat: no-repeat;*/
 	font-family: 'texgyreadventorregular' !important;
+	height: 100%;
 }
 
 body {
