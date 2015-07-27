@@ -23,12 +23,20 @@ h1 {
 
 h1, h2 {
 	margin-bottom: 20px;
-	
+	margin-left: 20px;
 }
 
-.selected {
+h2 {
+	cursor: pointer;
+	cursor: hand;
+}
+
+.selectedText {
 	font-weight: bold;
-	font-size: 32px;
+}
+
+.selectedDiv {
+	background-color: rgba(0, 0, 0, 0.3);
 }
 
 #cat-title {

@@ -169,9 +169,9 @@ var viewModel = function() {
 
 				var catId = self.catList()[i].id;
 				var catName = self.catList()[i].title;
-				var catElem = "<div class='row' "
+				var catElem = "<div class='row' data-bind='css: { selectedDiv: currentCat() === " + i + "}' "
 					+ "id='" + catId + "'>"
-					+ "<h2 data-bind='css: { selected: currentCat() === " + i + "}'>"
+					+ "<h2 data-bind='css: { selectedText: currentCat() === " + i + "}'>"
 					+ catName + "</h2></div>";
 
 				$("#categories").append(catElem);
