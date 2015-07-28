@@ -83,15 +83,6 @@ var categories =
 ];
 
 
-// log window dims
-var winX, winY;
-var setBackgroundSize = function() {
-	winX = $(window).width();
-	winY = $(window).height();
-	console.log(winX + ", " + winY);
-};
-setBackgroundSize();
-$(window).resize(setBackgroundSize);
 
 
 //-----VIEWMODEL-----//
@@ -134,7 +125,6 @@ var viewModel = function() {
 			"</div>";
 		}
 
-
         return projElem;
     }, this);
 
@@ -143,8 +133,6 @@ var viewModel = function() {
 	this.changeCurrentCat = function(catIndex) {
 		self.currentCat(catIndex);
 	};
-
-
 
 	this.initCats = function(data) {
 
@@ -176,8 +164,25 @@ var viewModel = function() {
 			})(catObj, catIndex);
 		}
 	};
-
 	this.initCats(self.catList());
+
+
+	// init project area
+	this.setProjectArea = function() {
+
+		var winX = $(window).width();
+		console.log(winX);
+
+		if (winX > 700) {
+			$("#main").append("<div class='col-md-8' id='content' data-bind='html: projects'></div>");
+		} else {
+			var index = self.currentCat();
+			var selector = "#" + self.catList()[index].id;
+			
+			$(selector).after("<div class='row' id='content' data-bind='html: projects'></div>");
+		}
+    };
+	$(window).resize(self.setProjectArea());
 
 };
 
