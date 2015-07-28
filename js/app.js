@@ -84,14 +84,15 @@ var categories =
 
 
 // set  background size
-var imgX = 1920;
-var imgY = 1080;
+// var imgX = 1920;
+// var imgY = 1080;
 var winX, winY, newX, newY, newXY;
 
-// var setBackgroundSize = function() {
+var setBackgroundSize = function() {
 
-// 	winX = $(window).width();
-// 	winY = $(window).height();
+	winX = $(window).width();
+	winY = $(window).height();
+	console.log(winX + ", " + winY);
 
 // 	if (winX / winY < imgX / imgY) {
 // 		newY = winY;
@@ -103,11 +104,13 @@ var winX, winY, newX, newY, newXY;
 // 	newXY = newX + "px " + newY + "px";
 
 // 	$("html").css("background-size", newXY);
-// };
-// setBackgroundSize();
+// 	$("html").css("background-position", "center");
 
-// $(window).resize(setBackgroundSize);
+};
+setBackgroundSize();
 
+$(window).resize(setBackgroundSize);
+// $(window).scroll(setBackgroundSize);
 
 
 //-----VIEWMODEL-----//
