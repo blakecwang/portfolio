@@ -3,12 +3,16 @@
 }*/
 
 html {
-	background-color: black;
+	background: -webkit-linear-gradient(right, #febc4f, #a32a04); /* For Safari 5.1 to 6.0 */
+	background: -o-linear-gradient(left, #febc4f, #a32a04); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(left, #febc4f, #a32a04); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(to left, #febc4f, #a32a04); /* Standard syntax */
+
 	font-family: 'texgyreadventorregular' !important;
 	height: 100%;
 }
 
-@media (min-width: 500px) {
+@media (min-width: 700px) {
 	html {
 		background-image: url('../img/beach_2.jpg');
 		background-repeat: no-repeat;
@@ -45,7 +49,7 @@ h2 {
 }
 
 .selectedDiv {
-	background-color: rgba(0, 0, 0, 0.3);
+	background-color: rgba(83, 0, 2, 0.5);
 }
 
 #cat-title {
