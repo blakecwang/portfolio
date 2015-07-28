@@ -12,7 +12,7 @@ html {
 	height: 100%;
 }
 
-@media (min-width: 700px) {
+@media (min-width: 500px) {
 	html {
 		background-image: url('../img/beach_2.jpg');
 		background-repeat: no-repeat;

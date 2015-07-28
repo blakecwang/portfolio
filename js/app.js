@@ -83,34 +83,15 @@ var categories =
 ];
 
 
-// set  background size
-// var imgX = 1920;
-// var imgY = 1080;
-var winX, winY, newX, newY, newXY;
-
+// log window dims
+var winX, winY;
 var setBackgroundSize = function() {
-
 	winX = $(window).width();
 	winY = $(window).height();
 	console.log(winX + ", " + winY);
-
-// 	if (winX / winY < imgX / imgY) {
-// 		newY = winY;
-// 		newX = imgX * (winY / imgY);
-// 	} else {
-// 		newX = winX;
-// 		newY = imgY * (winX / imgX);
-// 	}
-// 	newXY = newX + "px " + newY + "px";
-
-// 	$("html").css("background-size", newXY);
-// 	$("html").css("background-position", "center");
-
 };
 setBackgroundSize();
-
 $(window).resize(setBackgroundSize);
-// $(window).scroll(setBackgroundSize);
 
 
 //-----VIEWMODEL-----//
