@@ -1,3 +1,23 @@
+// TODO
+// if on mobile:
+//	- render list of cats with "about me" projects shown
+//	- not a "current cat" model - each cat is active or inactive
+// 	- all projects are added to DOM but all except current cat(s) are hidden
+//	- tapping cat shows/hides its projects directly under respective cat
+//	- cats have dropdown icon
+// if on desktop:
+//	- cats render on the left
+//	- only one current cat (there can only be one!)
+//	- projects are shown in main area
+
+// strategy:
+//	- only thing hardcoded into index.html is the header (everything else changes)
+//	- use giant if statement to control how page gets rendered
+//	- knockout monitors active status of projects
+//	- all cat objects must be observables with data binds to their "active" property which shows/hides them
+//	- on mobile, multiple cats can be active while on desktop, there can only be one
+
+
 
 //-----MODEL-----//
 
@@ -58,30 +78,102 @@ var categories =
 	{
 	"title": "About Me",
 	"projects": bio,
-	"id": "bi"
+	"id": "bi",
+	"active": false
 	},
 	{
 	"title": "Mechanical Engineering",
 	"projects": meProjects,
-	"id": "me"
+	"id": "me",
+	"active": false
 	},
 	{
 	"title": "Web Development",
 	"projects": weProjects,
-	"id": "we"
+	"id": "we",
+	"active": false
 	},
 	{
 	"title": "Graphic Design",
 	"projects": grProjects,
-	"id": "gr"
+	"id": "gr",
+	"active": false
 	},
 	{
 	"title": "Music",
 	"projects": muProjects,
-	"id": "mu"
+	"id": "mu",
+	"active": false
 	}
 ];
 
+// build a category DOM element
+var buildCatElem = function(catObj) {
+
+	var catTitle = catOjb.title;
+	var catId = catObj.id;
+
+	return
+	"<div class='row' id='" + catId + "'>" +
+		"<h2>" + catTitle + "</h2>" +
+	"</div>";
+
+};
+
+// build a project DOM elemnt
+var buildProjElem = function(projObj) {
+
+	var projImgSrc = projObj.imgSrc;
+	var projAltText = projObj.altText;
+	var projName = projObj.name;
+	var projDescription = projObj.description;
+
+	return
+	"<div class='row'>" +
+		"<div class='col-md-4'>" +
+			"<img src='" + projImgSrc + "' alt='" + projAltText + "'>" +
+		"</div>" +
+		"<div class='col-md-8'>" +
+			"<div class='row'>" +
+				"<h2>" + projName + "</h2>" +
+			"</div>" +
+			"<div class='row'>" +
+				"<p>" + projDescription + "</p>" +
+			"</div>" +
+		"</div>" +
+	"</div>";
+
+};
+
+
+// layout
+var layoutElem = "";
+var windowWidth = $(window).width();
+console.log(windowWidth);
+
+
+if (windowWidth > 500) {
+
+
+	for (var i = 0; i < categories.length; i++) {
+
+		var projElem = "";
+		for (var j = 0; j < categories[i].projects.length; j++) {
+
+		}
+	}
+
+
+	<div class='row'>
+        <div class='col-md-4' id='categories'></div>
+        <div class='col-md-8' id='projects'></div>
+    </div>
+
+} else {
+
+}
+
+$(".container").append(layoutElem);
 
 
 
@@ -96,6 +188,8 @@ var viewModel = function() {
 		self.catList.push(categories[k]);
 	}
 	this.currentCat = ko.observable(0);
+
+	// init projects
 	this.projects = ko.computed(function() {
 
 		var catIndex = self.currentCat();
@@ -128,11 +222,6 @@ var viewModel = function() {
         return projElem;
     }, this);
 
-
-	// define change current category function
-	this.changeCurrentCat = function(catIndex) {
-		self.currentCat(catIndex);
-	};
 
 	this.initCats = function(data) {
 
@@ -173,16 +262,25 @@ var viewModel = function() {
 		var winX = $(window).width();
 		console.log(winX);
 
+		// remove projects
+		$("#content").remove();
+
+		// add projects
 		if (winX > 700) {
 			$("#main").append("<div class='col-md-8' id='content' data-bind='html: projects'></div>");
 		} else {
 			var index = self.currentCat();
 			var selector = "#" + self.catList()[index].id;
-			
 			$(selector).after("<div class='row' id='content' data-bind='html: projects'></div>");
 		}
     };
 	$(window).resize(self.setProjectArea());
+
+	// define change current category function
+	this.changeCurrentCat = function(catIndex) {
+		self.currentCat(catIndex);
+		self.setProjectArea();
+	};
 
 };
 
