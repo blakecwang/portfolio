@@ -171,7 +171,6 @@ if (windowWidth > 800) {
 		$("#categories").append(catElem);
 
 		// append project elements to projects column
-		var projElem = "";
 		for (var j = 0; j < categories[i].projects.length; j++) {
 
 			var projElem = buildProjElem(categories[i].projects[j]);
@@ -188,6 +187,21 @@ if (windowWidth > 800) {
 	var mobileElem = "<div class='col-md-12' id='content'>";
 	$(".container").append(mobileElem);
 
+	// append categories immediately followed by their respective projects
+	for (var m = 0; m < categories.length; m++) {
+
+		var contentElem = "";
+
+		// add category element
+		contentElem += buildCatElem(categories[m]);
+
+		// add projects
+		for (var n = 0; n < categories[m].projects.length; n++) {
+			contentElem += buildProjElem(categories[m].projects[n]);
+		}
+		$("#content").append(contentElem);
+
+	}
 }
 
 
