@@ -68,7 +68,8 @@ var muProjects = [
 	"name": "Got to Give",
 	"imgSrc": "some path",
 	"altText": "adorable penguin with giant glasses",
-	"description": "bad-ass song"
+	"description": "bad-ass song",
+	"pClass": "fart zone"
 	}
 ];
 
@@ -107,6 +108,18 @@ var categories =
 	}
 ];
 
+// assign classes to projects
+for (var b = 0; b < categories.length; b++) {
+
+	var pc = categories[b].id + "Proj";
+
+	for (var c = 0; c < categories[b].projects.length; c++) {
+		categories[b].projects[c].pClass = pc;
+	}
+	
+}
+
+
 // build a category DOM element
 var buildCatElem = function(catObj) {
 
@@ -129,9 +142,11 @@ var buildProjElem = function(projObj) {
 	var projAltText = projObj.altText;
 	var projName = projObj.name;
 	var projDescription = projObj.description;
+	var projClass = projObj.pClass;
+	console.log(projClass);
 
 	var projElem =
-	"<div class='row'>" +
+	"<div class='row " + projClass + "'>" +
 		"<div class='col-md-4'>" +
 			"<img src='" + projImgSrc + "' alt='" + projAltText + "'>" +
 		"</div>" +
@@ -146,7 +161,20 @@ var buildProjElem = function(projObj) {
 	"</div>";
 
 	return projElem;
+};
 
+// show or hide projects
+var showHideProjects = function() {
+
+	for (var a = 0; a < categories.length; a++) {
+
+		var id = "#" + categories[a].id;
+		if (categories[a].active === true) {
+			console.log("show");
+		} else {
+			console.log("hide");
+		}
+	}
 };
 
 
@@ -205,6 +233,21 @@ if (windowWidth > 800) {
 }
 
 
+// add click listeners to category elements
+for (var k = 0; k < categories.length; k++) {
+
+	var catObj = categories[k];
+	var catIndex = k;
+	
+	(function(_data, _index) {
+		var catElem = "#" + _data.id;
+		$(catElem).click(function() {
+			console.log(catElem);
+		});
+	})(catObj, catIndex);
+}
+
+showHideProjects();
 
 
 
