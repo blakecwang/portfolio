@@ -68,8 +68,7 @@ var muProjects = [
 	"name": "Got to Give",
 	"imgSrc": "some path",
 	"altText": "adorable penguin with giant glasses",
-	"description": "bad-ass song",
-	"pClass": "fart zone"
+	"description": "bad-ass song"
 	}
 ];
 
@@ -163,23 +162,11 @@ var buildProjElem = function(projObj) {
 	return projElem;
 };
 
-// show or hide projects
-var showHideProjects = function() {
-
-	for (var a = 0; a < categories.length; a++) {
-
-		var id = "#" + categories[a].id;
-		if (categories[a].active === true) {
-			console.log("show");
-		} else {
-			console.log("hide");
-		}
-	}
-};
 
 
 // layout
 var windowWidth = $(window).width();
+var showHideProjects;
 
 // for desktop
 if (windowWidth > 800) {
@@ -206,10 +193,10 @@ if (windowWidth > 800) {
 
 		}
 	}
-
+}
 
 // for mobile
-} else {
+else {
 
 	// append one column for categories and projects
 	var mobileElem = "<div class='col-md-12' id='content'>";
@@ -231,6 +218,21 @@ if (windowWidth > 800) {
 
 	}
 }
+
+
+// show or hide projects depending on whether their cat is active
+showHideProjects = function() {
+
+	for (var a = 0; a < categories.length; a++) {
+
+		var cl = "." + categories[a].pClass;
+		if (categories[a].active === true) {
+			$(cl).show();
+		} else {
+			$(cl).hide();
+		}
+	}
+};
 
 
 // add click listeners to category elements
