@@ -119,6 +119,9 @@ for (var b = 0; b < categories.length; b++) {
 }
 
 
+
+//-----LAYOUT-----//
+
 // build a category DOM element
 var buildCatElem = function(catObj) {
 
@@ -133,7 +136,6 @@ var buildCatElem = function(catObj) {
 	return catElem;
 };
 
-
 // build a project DOM elemnt
 var buildProjElem = function(projObj) {
 
@@ -142,7 +144,6 @@ var buildProjElem = function(projObj) {
 	var projName = projObj.name;
 	var projDescription = projObj.description;
 	var projClass = projObj.pClass;
-	console.log(projClass);
 
 	var projElem =
 	"<div class='row " + projClass + "'>" +
@@ -164,16 +165,25 @@ var buildProjElem = function(projObj) {
 
 
 
-// layout
+// append elements to DOM differently for desktop and mobile
+
 var windowWidth = $(window).width();
-var showHideProjects;
+var setActive;
 
 // for desktop
 if (windowWidth > 800) {
 
+	// define setActive to only let one category be active
+	setActive = function(_cat) {
+		console.log("there can only be one!");
+	};
+
+	// show about me element
+	categories[0].active = true;
+
 	// append separate columns for categories and projects
 	var desktopElem = 
-	"<div class='row'>" +
+	"<div class='row' id='content'>" +
         "<div class='col-md-4' id='categories'></div>" +
         "<div class='col-md-8' id='projects'></div>" +
     "</div>";
@@ -195,8 +205,14 @@ if (windowWidth > 800) {
 	}
 }
 
+
 // for mobile
 else {
+
+	// define setActive to let multiple categories be active
+	setActive = function(_cat) {
+		console.log("there can be many!");
+	};
 
 	// append one column for categories and projects
 	var mobileElem = "<div class='col-md-12' id='content'>";
@@ -220,43 +236,59 @@ else {
 }
 
 
-// show or hide projects depending on whether their cat is active
-showHideProjects = function() {
+// loop through categores and show if active === true
+// and hide if active === false
+var showHideProjects = function() {
+	for (var f = 0; f < categories.length; f++) {
 
-	for (var a = 0; a < categories.length; a++) {
+		var catDiv = "#" + categories[f].id;
+		var cl = "." + categories[f].id + "Proj";
 
-		var cl = "." + categories[a].pClass;
-		if (categories[a].active === true) {
+		if (categories[f].active === true) {
+			
 			$(cl).show();
-		} else {
+			$(catDiv).addClass("selectedDiv");
+			console.log(catDiv);
+			console.log(cl);
+		}
+		else {
+			$(catDiv).removeClass("selectedDiv");
 			$(cl).hide();
 		}
 	}
 };
-
-
-// add click listeners to category elements
-for (var k = 0; k < categories.length; k++) {
-
-	var catObj = categories[k];
-	var catIndex = k;
-	
-	(function(_data, _index) {
-		var catElem = "#" + _data.id;
-		$(catElem).click(function() {
-			console.log(catElem);
-		});
-	})(catObj, catIndex);
-}
-
 showHideProjects();
 
 
+// add click listeners to category elements
+// for (var k = 0; k < categories.length; k++) {
 
-// //-----VIEWMODEL-----//
+// 	var catObj = categories[k];
+// 	var catIndex = k;
+	
+// 	(function(_data, _index) {
+// 		var catElem = "#" + _data.id;
+// 		$(catElem).click(function() {
+// 			console.log(catElem);
+// 		});
+// 	})(catObj, catIndex);
+// }
+
+
+
+
+//-----VIEWMODEL-----//
 
 // var viewModel = function() {
 // 	var self = this;
+
+// 	var da = [];
+// 	for (var d = 0; d < categories.length; d++) {
+// 		da.push(categories[d].active);
+// 	}
+
+// 	this.displayArr = ko.observable(da);
+
 
 // 	// initialize some observables
 // 	this.catList = ko.observableArray();
@@ -268,95 +300,9 @@ showHideProjects();
 // 	// init projects
 // 	this.projects = ko.computed(function() {
 
-// 		var catIndex = self.currentCat();
-// 		var projArray = self.catList()[catIndex].projects;
-// 		var projElem = "";
-
-// 		for (var m = 0; m < projArray.length; m++) {
-
-// 			var projImgSrc = projArray[m].imgSrc;
-// 			var projAltText = projArray[m].altText;
-// 			var projName = projArray[m].name;
-// 			var projDescription = projArray[m].description;
-
-// 			projElem +=
-// 			"<div class='row'>" +
-// 				"<div class='col-md-4'>" +
-// 					"<img src='" + projImgSrc + "' alt='" + projAltText + "'>" +
-// 				"</div>" +
-// 				"<div class='col-md-8'>" +
-// 					"<div class='row'>" +
-// 						"<h2>" + projName + "</h2>" +
-// 					"</div>" +
-// 					"<div class='row'>" +
-// 						"<p>" + projDescription + "</p>" +
-// 					"</div>" +
-// 				"</div>" +
-// 			"</div>";
-// 		}
 
 //         return projElem;
 //     }, this);
-
-
-// 	this.initCats = function(data) {
-
-// 		// add category elements to DOM
-// 		for (var i = 0; i < self.catList().length; i++) {
-
-// 				var catId = self.catList()[i].id;
-// 				var catName = self.catList()[i].title;
-// 				var catElem = "<div class='row' data-bind='css: { selectedDiv: currentCat() === " + i + "}' "
-// 					+ "id='" + catId + "'>"
-// 					+ "<h2 data-bind='css: { selectedText: currentCat() === " + i + "}'>"
-// 					+ catName + "</h2></div>";
-
-// 				$("#categories").append(catElem);
-
-// 		}
-
-// 		// add click listeners to category elements
-// 		for (var j = 0; j < self.catList().length; j++) {
-
-// 			var catObj = self.catList()[j];
-// 			var catIndex = j;
-			
-// 			(function(_data, _index) {
-// 				var catElem = "#" + _data.id;
-// 				$(catElem).click(function() {
-// 					self.changeCurrentCat(_index);
-// 				});
-// 			})(catObj, catIndex);
-// 		}
-// 	};
-// 	this.initCats(self.catList());
-
-
-// 	// init project area
-// 	this.setProjectArea = function() {
-
-// 		var winX = $(window).width();
-// 		console.log(winX);
-
-// 		// remove projects
-// 		$("#content").remove();
-
-// 		// add projects
-// 		if (winX > 700) {
-// 			$("#main").append("<div class='col-md-8' id='content' data-bind='html: projects'></div>");
-// 		} else {
-// 			var index = self.currentCat();
-// 			var selector = "#" + self.catList()[index].id;
-// 			$(selector).after("<div class='row' id='content' data-bind='html: projects'></div>");
-// 		}
-//     };
-// 	$(window).resize(self.setProjectArea());
-
-// 	// define change current category function
-// 	this.changeCurrentCat = function(catIndex) {
-// 		self.currentCat(catIndex);
-// 		self.setProjectArea();
-// 	};
 
 // };
 

@@ -44,10 +44,6 @@ h2 {
 	cursor: hand;
 }
 
-.selectedText {
-	font-weight: bold;
-}
-
 .selectedDiv {
 	background-color: rgba(83, 0, 2, 0.5);
 }
