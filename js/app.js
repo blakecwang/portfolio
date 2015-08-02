@@ -167,19 +167,27 @@ var buildProjElem = function(projObj) {
 
 // append elements to DOM differently for desktop and mobile
 
+var breakPoint = 800;
 var windowWidth = $(window).width();
+var windowLayout;
+if (windowWidth > breakPoint) {
+	windowLayout = "desktop";
+} else {
+	windowLayout = "mobile";
+}
+
 var setActive;
 
 // for desktop
-if (windowWidth > 800) {
+if (windowLayout === "desktop") {
+
+	// show about me element
+	categories[0].active = true;
 
 	// define setActive to only let one category be active
 	setActive = function(_cat) {
 		console.log("there can only be one!");
 	};
-
-	// show about me element
-	categories[0].active = true;
 
 	// append separate columns for categories and projects
 	var desktopElem = 
@@ -206,8 +214,9 @@ if (windowWidth > 800) {
 }
 
 
+
 // for mobile
-else {
+if (windowLayout === "mobile") {
 
 	// define setActive to let multiple categories be active
 	setActive = function(_cat) {
@@ -230,8 +239,17 @@ else {
 		for (var n = 0; n < categories[m].projects.length; n++) {
 			contentElem += buildProjElem(categories[m].projects[n]);
 		}
+
+		contentElem += "<br>";
+
 		$("#content").append(contentElem);
 
+	}
+
+	// add selectedDiv class to all categories
+	for (var g = 0; g < categories.length; g++) {
+		var selDiv = "#" + categories[g].id;
+		$(selDiv).addClass("selectedDiv");
 	}
 }
 
@@ -247,13 +265,14 @@ var showHideProjects = function() {
 		if (categories[f].active === true) {
 			
 			$(cl).show();
-			$(catDiv).addClass("selectedDiv");
-			console.log(catDiv);
-			console.log(cl);
+			if (windowLayout === "desktop") {$(catDiv).addClass("selectedDiv");}
+			
 		}
 		else {
-			$(catDiv).removeClass("selectedDiv");
+			
 			$(cl).hide();
+			if (windowLayout === "desktop") {$(catDiv).removeClass("selectedDiv");}
+
 		}
 	}
 };
