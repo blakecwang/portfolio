@@ -185,8 +185,14 @@ if (windowLayout === "desktop") {
 	categories[0].active = true;
 
 	// define setActive to only let one category be active
-	setActive = function(_cat) {
+	setActive = function(_catIndex) {
 		console.log("there can only be one!");
+
+		for (var h = 0; h < categories.length; h++) {
+			categories[h].active = false;
+		}
+		categories[_catIndex].active = true;
+
 	};
 
 	// append separate columns for categories and projects
@@ -219,8 +225,14 @@ if (windowLayout === "desktop") {
 if (windowLayout === "mobile") {
 
 	// define setActive to let multiple categories be active
-	setActive = function(_cat) {
+	setActive = function(_catIndex) {
 		console.log("there can be many!");
+
+		if (categories[_catIndex].active === true) {
+			categories[_catIndex].active = false;
+		} else {
+			categories[_catIndex].active = true;
+		}
 	};
 
 	// append one column for categories and projects
@@ -280,18 +292,19 @@ showHideProjects();
 
 
 // add click listeners to category elements
-// for (var k = 0; k < categories.length; k++) {
+for (var k = 0; k < categories.length; k++) {
 
-// 	var catObj = categories[k];
-// 	var catIndex = k;
+	var catObj = categories[k];
+	var catIndex = k;
 	
-// 	(function(_data, _index) {
-// 		var catElem = "#" + _data.id;
-// 		$(catElem).click(function() {
-// 			console.log(catElem);
-// 		});
-// 	})(catObj, catIndex);
-// }
+	(function(_data, _index) {
+		var catElem = "#" + _data.id;
+		$(catElem).click(function() {
+			setActive(_index);
+			showHideProjects();
+		});
+	})(catObj, catIndex);
+}
 
 
 
