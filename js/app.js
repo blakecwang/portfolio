@@ -165,28 +165,19 @@ var buildProjElem = function(projObj) {
 
 
 
-// append elements to DOM differently for desktop and mobile
+var setActive, windowLayout;
 
-var breakPoint = 800;
-var windowWidth = $(window).width();
-var windowLayout;
-if (windowWidth > breakPoint) {
+// set up all the desktop elements
+var initDesktop = function() {
+
+	// set windowLayout to desktop
 	windowLayout = "desktop";
-} else {
-	windowLayout = "mobile";
-}
-
-var setActive;
-
-// for desktop
-if (windowLayout === "desktop") {
 
 	// show about me element
 	categories[0].active = true;
 
 	// define setActive to only let one category be active
 	setActive = function(_catIndex) {
-		console.log("there can only be one!");
 
 		for (var h = 0; h < categories.length; h++) {
 			categories[h].active = false;
@@ -217,16 +208,18 @@ if (windowLayout === "desktop") {
 
 		}
 	}
-}
+};
 
 
 
-// for mobile
-if (windowLayout === "mobile") {
+// set up all the mobile elements
+var initMobile = function() {
+
+	// set windowLayout to mobile
+	windowLayout = "mobile";
 
 	// define setActive to let multiple categories be active
 	setActive = function(_catIndex) {
-		console.log("there can be many!");
 
 		if (categories[_catIndex].active === true) {
 			categories[_catIndex].active = false;
@@ -263,7 +256,7 @@ if (windowLayout === "mobile") {
 		var selDiv = "#" + categories[g].id;
 		$(selDiv).addClass("selectedDiv");
 	}
-}
+};
 
 
 // loop through categores and show if active === true
@@ -288,54 +281,42 @@ var showHideProjects = function() {
 		}
 	}
 };
-showHideProjects();
 
 
 // add click listeners to category elements
-for (var k = 0; k < categories.length; k++) {
+var initClickListeners = function() {
 
-	var catObj = categories[k];
-	var catIndex = k;
-	
-	(function(_data, _index) {
-		var catElem = "#" + _data.id;
-		$(catElem).click(function() {
-			setActive(_index);
-			showHideProjects();
-		});
-	})(catObj, catIndex);
+	for (var k = 0; k < categories.length; k++) {
+
+		var catObj = categories[k];
+		var catIndex = k;
+		
+		(function(_data, _index) {
+			var catElem = "#" + _data.id;
+			$(catElem).click(function() {
+				setActive(_index);
+				showHideProjects();
+			});
+		})(catObj, catIndex);
+	}
+};
+
+
+// append elements to DOM differently for desktop and mobile
+var initApp = function() {
+
+	var breakPoint = 500;
+	var windowWidth = $(window).width();
+
+	if (windowWidth > breakPoint) {
+		initDesktop();
+	} else {
+		initMobile();
+	}
+	console.log(windowLayout);
+	showHideProjects();
+	initClickListeners();	
+
 }
 
-
-
-
-//-----VIEWMODEL-----//
-
-// var viewModel = function() {
-// 	var self = this;
-
-// 	var da = [];
-// 	for (var d = 0; d < categories.length; d++) {
-// 		da.push(categories[d].active);
-// 	}
-
-// 	this.displayArr = ko.observable(da);
-
-
-// 	// initialize some observables
-// 	this.catList = ko.observableArray();
-// 	for (var k = 0; k < categories.length; k++) {
-// 		self.catList.push(categories[k]);
-// 	}
-// 	this.currentCat = ko.observable(0);
-
-// 	// init projects
-// 	this.projects = ko.computed(function() {
-
-
-//         return projElem;
-//     }, this);
-
-// };
-
-// ko.applyBindings(new viewModel());
+initApp();
