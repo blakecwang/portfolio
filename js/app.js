@@ -1,74 +1,55 @@
-// TODO
-// if on mobile:
-//	- render list of cats with "about me" projects shown
-//	- not a "current cat" model - each cat is active or inactive
-// 	- all projects are added to DOM but all except current cat(s) are hidden
-//	- tapping cat shows/hides its projects directly under respective cat
-//	- cats have dropdown icon
-// if on desktop:
-//	- cats render on the left
-//	- only one current cat (there can only be one!)
-//	- projects are shown in main area
-
-// strategy:
-//	- only thing hardcoded into index.html is the header (everything else changes)
-//	- use giant if statement to control how page gets rendered
-//	- knockout monitors active status of projects
-//	- all cat objects must be observables with data binds to their "active" property which shows/hides them
-//	- on mobile, multiple cats can be active while on desktop, there can only be one
-
 
 
 //-----MODEL-----//
 
 var bio = [
 	{
-	"name": "Welcome to my Portfolio!",
-	"imgSrc": "img/penguin.jpeg",
-	"altText": "adorable penguin with giant glasses",
-	"description": "Welcome to my portfolio!"
+	"name": "Welcome ot my Portfolio!",
+	"imgSrc": "TBD",
+	"altText": "TBD",
+	"description": "TBD"
 	}
 ];
 
 var meProjects = [
 	{
 	"name": "ROVA Pedestrian Assistive Technology",
-	"imgSrc": "some path",
-	"altText": "adorable penguin with giant glasses",
-	"description": "bad-ass walker"
+	"imgSrc": "TBD",
+	"altText": "TBD",
+	"description": "TBD"
 	},
 	{
 	"name": "Accuvax",
-	"imgSrc": "some path",
-	"altText": "adorable penguin with giant glasses",
-	"description": "bad-ass vaccine refrigerator"
+	"imgSrc": "TBD",
+	"altText": "TBD",
+	"description": "TBD"
 	}
 ];
 
 var weProjects = [
 	{
 	"name": "Frogger game",
-	"imgSrc": "some path",
-	"altText": "adorable penguin with giant glasses",
-	"description": "bad-ass game"
+	"imgSrc": "TBD",
+	"altText": "TBD",
+	"description": "TBD"
 	}
 ];
 
 var grProjects = [
 	{
 	"name": "String cheese people",
-	"imgSrc": "some path",
-	"altText": "adorable penguin with giant glasses",
-	"description": "bad-ass drawing"
+	"imgSrc": "TBD",
+	"altText": "TBD",
+	"description": "TBD"
 	}
 ];
 
 var muProjects = [
 	{
 	"name": "Got to Give",
-	"imgSrc": "some path",
-	"altText": "adorable penguin with giant glasses",
-	"description": "bad-ass song"
+	"imgSrc": "TBD",
+	"altText": "TBD",
+	"description": "TBD"
 	}
 ];
 
@@ -120,7 +101,10 @@ for (var b = 0; b < categories.length; b++) {
 
 
 
-//-----LAYOUT-----//
+//-----VIEWMODEL-----//
+
+// declare some top level vars
+var setActive, windowLayout;
 
 // build a category DOM element
 var buildCatElem = function(catObj) {
@@ -135,6 +119,7 @@ var buildCatElem = function(catObj) {
 
 	return catElem;
 };
+
 
 // build a project DOM elemnt
 var buildProjElem = function(projObj) {
@@ -163,9 +148,19 @@ var buildProjElem = function(projObj) {
 	return projElem;
 };
 
+// add bio content
+var initBio = function() {
 
+    $.ajax({
+        url: "bio.txt",
+        dataType: "text",
+        success : function (data) {
+            $("p:first-of-type").html(data);
+        }
+    });
+	
+};
 
-var setActive, windowLayout;
 
 // set up all the desktop elements
 var initDesktop = function() {
@@ -305,7 +300,7 @@ var initClickListeners = function() {
 // append elements to DOM differently for desktop and mobile
 var initApp = function() {
 
-	var breakPoint = 500;
+	var breakPoint = 800;
 	var windowWidth = $(window).width();
 
 	if (windowWidth > breakPoint) {
@@ -313,9 +308,9 @@ var initApp = function() {
 	} else {
 		initMobile();
 	}
-	console.log(windowLayout);
+	initBio();
 	showHideProjects();
-	initClickListeners();	
+	initClickListeners();
 
 }
 
