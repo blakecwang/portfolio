@@ -4,7 +4,7 @@
 
 var bio = [
 	{
-	"name": "Welcome ot my Portfolio!",
+	"name": "Welcome to my Portfolio!",
 	"imgSrc": "TBD",
 	"altText": "TBD",
 	"description": "TBD"
@@ -35,6 +35,15 @@ var weProjects = [
 	}
 ];
 
+var muProjects = [
+	{
+	"name": "Got to Give",
+	"imgSrc": "TBD",
+	"altText": "TBD",
+	"description": "TBD"
+	}
+];
+
 var grProjects = [
 	{
 	"name": "String cheese people",
@@ -44,14 +53,6 @@ var grProjects = [
 	}
 ];
 
-var muProjects = [
-	{
-	"name": "Got to Give",
-	"imgSrc": "TBD",
-	"altText": "TBD",
-	"description": "TBD"
-	}
-];
 
 
 var categories =
@@ -75,15 +76,15 @@ var categories =
 	"active": false
 	},
 	{
-	"title": "Graphic Design",
-	"projects": grProjects,
-	"id": "gr",
-	"active": false
-	},
-	{
 	"title": "Music",
 	"projects": muProjects,
 	"id": "mu",
+	"active": false
+	},
+	{
+	"title": "Graphic Design",
+	"projects": grProjects,
+	"id": "gr",
 	"active": false
 	}
 ];
