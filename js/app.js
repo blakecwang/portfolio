@@ -150,30 +150,13 @@ var buildProjElem = function(projObj) {
 };
 
 
-// add bio content
-var initBio = function() {
-
-    $.ajax({
-        url: "bio.txt",
-        dataType: "text",
-        success: function (data) {
-            // $("p:first-of-type").html(data);
-            categories[0].projects[0].description = data;
-            console.log(categories[0].projects[0].description);
-            initDesktop();
-        }
-    });
-};
-
-
-
 // set up all the desktop elements
 var initDesktop = function() {
 
 	// set windowLayout to desktop
 	windowLayout = "desktop";
 
-	// show about me element
+	// show 'about me' element
 	categories[0].active = true;
 
 	// define setActive to only let one category be active
@@ -280,6 +263,8 @@ var showHideProjects = function() {
 
 		}
 	}
+
+	console.log("showHideProjects was run.");
 };
 
 
@@ -305,20 +290,36 @@ var initClickListeners = function() {
 // append elements to DOM differently for desktop and mobile
 var initApp = function() {
 
-	var breakPoint = 800;
-	var windowWidth = $(window).width();
+	var self = this;
 
-	
-	console.log(categories[0].projects[0].description);
+	// set breakpoint to switch between desktop and mobile versions
+	this.breakPoint = 800;
+	this.windowWidth = $(window).width();
 
-	if (windowWidth > breakPoint) {
-		initDesktop();
-	} else {
-		initMobile();
-	}
-	initBio();
-	showHideProjects();
-	initClickListeners();
+	// init layout depending on screen width
+	this.initLayout = function(b) {
+	    if (self.windowWidth > b) {
+			initDesktop();
+		} else {
+			initMobile();
+		}
+	};
+
+	// grab the bio from bio.txt
+	$.ajax({
+        url: "bio.txt",
+        dataType: "text",
+        success: function(data) {
+
+        	// set the bio project description to the text from bio.txt
+            categories[0].projects[0].description = data;
+
+            self.initLayout(self.breakPoint);
+
+            showHideProjects();
+			initClickListeners();
+        }
+    });
 
 }
 
