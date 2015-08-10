@@ -138,7 +138,7 @@ var buildProjElem = function(projObj) {
 		"</div>" +
 		"<div class='col-md-8'>" +
 			"<div class='row'>" +
-				"<h2>" + projName + "</h2>" +
+				"<h3>" + projName + "</h3>" +
 			"</div>" +
 			"<div class='row'>" +
 				"<p>" + projDescription + "</p>" +
@@ -307,7 +307,7 @@ var initApp = function() {
 
 // grab the bio from bio.txt
 $.ajax({
-    url: "bio.txt",
+    url: "copy/bio.txt",
     dataType: "text",
     success: function(data) {
 
