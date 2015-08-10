@@ -149,18 +149,22 @@ var buildProjElem = function(projObj) {
 	return projElem;
 };
 
+
 // add bio content
 var initBio = function() {
 
     $.ajax({
         url: "bio.txt",
         dataType: "text",
-        success : function (data) {
-            $("p:first-of-type").html(data);
+        success: function (data) {
+            // $("p:first-of-type").html(data);
+            categories[0].projects[0].description = data;
+            console.log(categories[0].projects[0].description);
+            initDesktop();
         }
     });
-	
 };
+
 
 
 // set up all the desktop elements
@@ -303,6 +307,9 @@ var initApp = function() {
 
 	var breakPoint = 800;
 	var windowWidth = $(window).width();
+
+	
+	console.log(categories[0].projects[0].description);
 
 	if (windowWidth > breakPoint) {
 		initDesktop();
