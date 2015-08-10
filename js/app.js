@@ -263,8 +263,6 @@ var showHideProjects = function() {
 
 		}
 	}
-
-	console.log("showHideProjects was run.");
 };
 
 
@@ -292,35 +290,31 @@ var initApp = function() {
 
 	var self = this;
 
-	// set breakpoint to switch between desktop and mobile versions
+	// set breakPoint to switch between desktop and mobile versions
 	this.breakPoint = 800;
 	this.windowWidth = $(window).width();
 
 	// init layout depending on screen width
-	this.initLayout = function(b) {
-	    if (self.windowWidth > b) {
-			initDesktop();
-		} else {
-			initMobile();
-		}
-	};
-
-	// grab the bio from bio.txt
-	$.ajax({
-        url: "bio.txt",
-        dataType: "text",
-        success: function(data) {
-
-        	// set the bio project description to the text from bio.txt
-            categories[0].projects[0].description = data;
-
-            self.initLayout(self.breakPoint);
-
-            showHideProjects();
-			initClickListeners();
-        }
-    });
-
+    if (self.windowWidth > self.breakPoint) {
+		initDesktop();
+	} else {
+		initMobile();
+	}
+    showHideProjects();
+	initClickListeners();
 }
 
-initApp();
+
+// grab the bio from bio.txt
+$.ajax({
+    url: "bio.txt",
+    dataType: "text",
+    success: function(data) {
+
+    	// set the bio project description to the text from bio.txt
+        categories[0].projects[0].description = data;
+
+        // init the whole damn thing!
+        initApp();
+    }
+});
