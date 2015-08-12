@@ -1,18 +1,18 @@
-Hi there, I'm Blake. Thanks for taking the time to check out my portfolio! Here's a little about myself.
+Hi there again, I'm Blake. Thanks for taking the time to check out my portfolio! Here's a little about myself.
 
 </p><p>
 I grew up in Goleta, CA (near to Santa Barbara) with my parents and three younger sisters. My father was the founder and CEO of two successful medical robotics companies; Computer Motion (now Intuitive Surgical), and InTouch Health. My mother stayed home to raise my sisters and me. Thanks to their support and example, I've been able been able to pursue the many different areas of study displayed on this portfolio site.
 
-</p><p>
+</p><h4>Mechanical Engineering</h4><p>
 Growing up, I spent most of my free time doing extreme sports (surfing, wakeboarding, skateboarding, snowboarding), playing music (bass, piano, drums, guitar), or building things that would help me do these activities (mostly skate ramps and guitars). My father, being an engineer, encouraged me to design and build anything I could think of. I have this encouragement to thank for my love of making. When I took a college internship at at InTouch Health designing parts, assemblies, and test fixtures for remote presence robots, I knew that engineering was a good fit for me. After graduating from UCSB with my bachelor's in physics, I moved to San Diego where I got a job as a Mechanical Design Engineer at an industrial design firm called DDSTUDIO - a position I still hold today. DDSTUDIO has been an ideal place to learn and grow my skills. As a consulting firm, we get to work on many different types of projects across many industries.
 
-</p><p>
+</p><h4>Web Development</h4><p>
 Over the course of the last year and a half, I've taken an interest in programming and front-end web development. I started by teaching myself some simple python in order to learn some of the fundamentals of programming. I then took a course in Java programming through San Diego Mesa College in which I earned a grade of A+. I then went on to earn a nano-degree in front-end web development from Udacity, a prestigious online education platform. During my Udacity coursework, I gained skills in HTML, CSS, and JavaScript as well as fluency with popular libraries and frameworks such as Bootstrap, jQuery, and KnockoutJS to name a few. I used these skills to complete many fun and challenging projects including this portfolio site.
 
-</p><p>
+</p><h4>Music</h4><p>
 Back in high school, I had the opportunity to travel Europe as the bass player for the Dos Pueblos Jazz Choir and Combo and this is when I really began to focus seriously on studying music theory and its application to the bass. In college, I taught private lessons as well as volunteered every week at the boys' and girls' club where a local nonprofit called Notes for Notes had set up a music center. I took courses in classical music theory and musicianship (as much as my physics schedule would allow). I also played in some of UCSB's jazz combos and sang in their gospel choir. Since leaving UCSB, I started a rock group called Tuxedo Skydive (find links to our songs in the music section) and recorded a four track EP that we are very proud of.
 
-</p><p>
+</p><h4>Graphic Design</h4><p>
 Some of my earliest childhood memories are of drawing with my mother. She always nurtured my creative side and as a result, I have always had a love for visual arts. In high school, I took a class offered by the local city college (SBCC) on Photoshop and Illustrator and since then have made a hobby (and some money) designing logos, album covers, holiday cards, T-shirts, and even a tattoo.
 
 </p><p>

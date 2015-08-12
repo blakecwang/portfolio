@@ -1,3 +1,7 @@
+// TODO
+// In desktop version, make all content appear in iFrame
+// 		- make app populate frame.html instead of 
+
 
 
 //-----MODEL-----//
@@ -5,7 +9,7 @@
 var bio = [
 	{
 	"name": "Welcome to my Portfolio!",
-	"imgSrc": "TBD",
+	"imgSrc": "img/blake_on_elephant.jpg",
 	"altText": "TBD",
 	"description": "TBD"
 	}
@@ -97,14 +101,13 @@ for (var b = 0; b < categories.length; b++) {
 	for (var c = 0; c < categories[b].projects.length; c++) {
 		categories[b].projects[c].pClass = pc;
 	}
-	
 }
 
 
 
 //-----VIEWMODEL-----//
 
-// declare some top level vars
+// declare some global vars
 var setActive, windowLayout;
 
 // build a category DOM element
@@ -133,10 +136,10 @@ var buildProjElem = function(projObj) {
 
 	var projElem =
 	"<div class='row " + projClass + "'>" +
-		"<div class='col-md-4'>" +
+		"<div class='col-md-3'>" +
 			"<img src='" + projImgSrc + "' alt='" + projAltText + "'>" +
 		"</div>" +
-		"<div class='col-md-8'>" +
+		"<div class='col-md-9'>" +
 			"<div class='row'>" +
 				"<h3>" + projName + "</h3>" +
 			"</div>" +
@@ -318,3 +321,6 @@ $.ajax({
         initApp();
     }
 });
+
+
+console.log()

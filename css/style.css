@@ -30,6 +30,12 @@ body {
 	color: white;
 }
 
+iframe {
+	background-color: transparent;
+	overflow-x: hidden;
+  	overflow-Y: hidden;
+}
+
 h1 {
 	font-size: 42px;
 	text-align: center;
@@ -45,6 +51,10 @@ h2 {
 	font-size: 26px
 }
 
+h3 {
+	margin-top: 5px;
+}
+
 .selectedDiv {
 	background-color: rgba(83, 0, 2, 0.5);
 }
@@ -53,6 +63,11 @@ h2 {
 	text-align: center;
 }
 
-/*br {
-	height: 24px;
-}*/
+img {
+	width: 100%;
+}
+
+iframe {
+	height: 100%;
+	width: 100%;
+}
